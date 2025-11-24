@@ -1,0 +1,80 @@
+/* General Reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    height: 100vh; /* Full screen height */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+/* --- STYLING THE POP UP (INDEX.HTML) --- */
+
+/* This darkens the background to focus attention on the box */
+body:not(.reveal-page) {
+    background-color: #333; 
+}
+
+.modal-container {
+    background-color: white;
+    width: 400px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.terms-box {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    height: 100px;
+    overflow-y: scroll; /* Allows scrolling if text is long */
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+/* --- BUTTON STYLING --- */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btn {
+    text-decoration: none; /* Removes underline from links */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+    flex: 1; /* Makes buttons equal width */
+    cursor: pointer;
+}
+
+/* The 'Decline' button styling */
+.decline {
+    background-color: #e74c3c; /* Red */
+    color: white;
+}
+.decline:hover {
+    background-color: #c0392b;
+}
+
+/* The 'Agree' button styling */
+.agree {
+    background-color: #2ecc71; /* Green */
+    color: white;
+}
+.agree:hover {
+    background-color: #27ae60;
+}
+
+/* --- STYLING THE REVEAL PAGE --- */
+.reveal-page {
+    background-color: #ffffff; /* White background for main site */
+    display: block; /* Reset flexbox for normal page flow */
+    padding: 50px;
+    text-align: center;
+}
