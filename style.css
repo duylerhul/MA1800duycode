@@ -78,3 +78,56 @@ body:not(.reveal-page) {
     padding: 50px;
     text-align: center;
 }
+/* 1. Define the RGB color split animation */
+@keyframes glitch-text {
+    0% { text-shadow: 2px 0 red, -2px 0 blue; }
+    25% { text-shadow: -2px 0 red, 2px 0 blue; }
+    50% { text-shadow: 0 0 black; }
+    75% { text-shadow: 2px 0 blue, -2px 0 red; }
+    100% { text-shadow: -1px 0 red, 1px 0 blue; }
+}
+
+/* 2. Apply it to the H1 title */
+h1 {
+    /* Runs the animation quickly (0.3s) and repeats forever */
+    animation: glitch-text 0.3s infinite;
+}
+/* THE CORRUPTION ANIMATION */
+@keyframes corrupted-glitch {
+    0% { 
+        transform: skew(0deg); 
+        box-shadow: 0 0 0 transparent;
+    }
+    20% { 
+        transform: skew(-20deg); /* Bends the button left */
+        box-shadow: 5px 5px 0 red; /* Creates a hard red shadow */
+    }
+    40% { 
+        transform: skew(20deg); /* Bends the button right */
+        box-shadow: -5px -5px 0 blue; /* Creates a hard blue shadow */
+    }
+    60% { 
+        transform: skew(-5deg); 
+        filter: invert(1); /* Flips black to white, white to black */
+    }
+    80% { 
+        transform: skew(5deg); 
+        box-shadow: 3px -3px 0 lime; /* Flash of green */
+    }
+    100% { 
+        transform: skew(0deg); 
+        filter: invert(0);
+    }
+}
+/* Apply the corruption when hovering over ANY button */
+.btn:hover {
+    /* Run the animation very fast (0.3s) and repeat infinitely */
+    animation: corrupted-glitch 0.3s infinite;
+    
+    /* Change cursor to 'help' or 'not-allowed' to add to the confusion */
+    cursor: help; 
+    
+    /* Make the text bold and pixelated font if available */
+    font-weight: bold;
+    font-family: "Courier New", monospace; 
+}
