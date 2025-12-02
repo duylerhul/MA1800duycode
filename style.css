@@ -1,133 +1,189 @@
-/* General Reset */
+
+/* the main screen set up for the background */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    height: 100vh; /* Full screen height */
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+     /* remove all of the white space in the canvas to make them completely black */
+    height: 100vh;
+    /* make the background fill the entire screen */
+    background-color: #050505; /* near black colour */
+    /* set the colour for the screen to be near black to resemble the screen off theme */
+    color: #33ff00; 
+    /* bright green colour */
+    font-family: "Courier New", Courier, monospace; 
+    /* the font style to be used throughout the page */
+    display: flex; 
+    /* set up a flexbox to perfectly align the term and condition box in the middle of the page without it sliding up or down   */
+    justify-content: center; 
+    /* center the box horizontally so it could be in the middle */
+    align-items: center;
+    /* center the box vertically so it could be in the middle */
+    text-shadow: 0 0 5px #33ff00; 
+    /* add a faint green blur around all text to mimic old glowing monitors */
 }
-
-/* --- STYLING THE POP UP (INDEX.HTML) --- */
-
-/* This darkens the background to focus attention on the box */
-body:not(.reveal-page) {
-    background-color: #333; 
+/* create a dark line within the background   */
+.scanlines {
+    position: fixed; /* lock the position of each line so that they wouldn't move when people scrolling down  */
+    width: 100vw; /* make the line to fill the width of the screen  */
+    height: 100vh; /* make the line fill the height of the screen */
+    background-size: 100% 4px;
+    pointer-events: none; /* make the line non clickdable to so that the user doesn't click the wrong thing appart from thigns that are clickdable which is the hiden links and the two button down  */
+    z-index: 10; /* make the line sit on top of everything  */
 }
-
-.modal-container {
-    background-color: white;
-    width: 400px;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    text-align: center;
+/* creating the term and condition box  */
+.box-sizing {
+    width: 600px;/* sets the width of the term and condition window */
+    border: 2px solid #33ff00; /*create a glowing green outline outside the box */
+    padding: 20px; /* create a barrier for the text to not hit the box wall  */
+    background-color: rgba(0, 20, 0, 0.9); /* make the background colour of the box to be light black so the word can be seen */
+    box-shadow: 0 0 20px #33ff00;/* make the outline of the box glowing */
+    animation: flicker 4s infinite; /* make they create the flicker affect to add on the effect of glitching that anoy the user  */
 }
-
-.terms-box {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 15px;
-    height: 100px;
-    overflow-y: scroll; /* Allows scrolling if text is long */
-    margin-bottom: 20px;
-    text-align: left;
-    font-size: 0.9rem;
+h1 {
+    text-transform: uppercase; /* make the headline are all in hyperbold creates the aggresive look */
+    border-bottom: 2px dashed #33ff00; /* dashesd underneath the title */
+    font-size: 2rem; /* font size */
+    letter-spacing: 5px; /* add extra space between each letter to create a sci-fi look for the title  */
+    margin-bottom: 20px; /* ensure that all the word under it are serparated for easier reading  */
 }
-
-/* --- BUTTON STYLING --- */
-.button-group {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
+/* the text box */
+.box-sizing2 {
+    height: 200px; /* make the text to go under if it too long by setting a max height */
+    border: 1px solid #005500; /* add a border around the text  */
+    font-size: 0.9rem; /* set the text size to be smaller than the title text */
+    line-height: 1.6; /* increase space between line so that it could be readable  */
 }
+.hidden-link {
+    /* set the colour to be the same as the text */
+    color: #33ff00;
 
-.btn {
-    text-decoration: none; /* Removes underline from links */
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
+    /* remove the underline under the link to make it harder to spot */
+    text-decoration: none;
+
+    /* change the mouse cursor to a + sign to show the user where to click and when */
+    cursor: crosshair; 
+
+    /* make the transition more smooth */
     transition: 0.3s;
-    flex: 1; /* Makes buttons equal width */
+}
+
+
+/* --- CRITERION 4: THE EXPERIENCE (INTERACTION) --- */
+
+/* Wrapper for the two buttons */
+.button-group {
+    /* Uses Flexbox to put buttons side-by-side */
+    display: flex;
+
+    /* Adds a 20px gap between the two buttons */
+    gap: 20px;
+}
+
+/* General style for BOTH buttons */
+.btn {
+    /* Makes both buttons grow to fill equal space (50/50 split) */
+    flex: 1;
+
+    /* Adds padding inside the buttons */
+    padding: 15px;
+
+    /* capitalizes the button text */
+    text-transform: uppercase;
+
+    /* Enforces the computer code font */
+    font-family: "Courier New", monospace;
+
+    /* Makes the text bold */
+    font-weight: bold;
+
+    /* Removes underline from the link text */
+    text-decoration: none;
+
+    /* Centers the text inside the button */
+    text-align: center;
+
+    /* Green border */
+    border: 1px solid #33ff00;
+
+    /* Black background */
+    background: black;
+
+    /* Green Text */
+    color: #33ff00;
+
+    /* Quick transition for color changes */
+    transition: 0.1s;
+
+    /* Shows the hand icon when hovering */
     cursor: pointer;
 }
 
-/* The 'Decline' button styling */
-.decline {
-    background-color: #e74c3c; /* Red */
-    color: white;
-}
-.decline:hover {
-    background-color: #c0392b;
-}
-
-/* The 'Agree' button styling */
-.agree {
-    background-color: #2ecc71; /* Green */
-    color: white;
-}
+/* THE "AGREE" BUTTON HOVER STATE */
 .agree:hover {
-    background-color: #27ae60;
+    /* Flips background to green */
+    background: #33ff00;
+
+    /* Flips text to black */
+    color: black;
+
+    /* Adds a glowing green cloud around the button */
+    box-shadow: 0 0 15px #33ff00;
 }
 
-/* --- STYLING THE REVEAL PAGE --- */
-.reveal-page {
-    background-color: #ffffff; /* White background for main site */
-    display: block; /* Reset flexbox for normal page flow */
-    padding: 50px;
-    text-align: center;
-}
-/* 1. Define the RGB color split animation */
-@keyframes glitch-text {
-    0% { text-shadow: 2px 0 red, -2px 0 blue; }
-    25% { text-shadow: -2px 0 red, 2px 0 blue; }
-    50% { text-shadow: 0 0 black; }
-    75% { text-shadow: 2px 0 blue, -2px 0 red; }
-    100% { text-shadow: -1px 0 red, 1px 0 blue; }
+/* THE "DECLINE" BUTTON HOVER STATE */
+.decline:hover {
+    /* Triggers the 'shake' animation defined below */
+    animation: shake 0.2s infinite;
+
+    /* Turns background Red (Danger) */
+    background: red;
+
+    /* Turns text Black */
+    color: black;
+
+    /* Turns border Red */
+    border-color: red;
+
+    /* Removes the text glow for a stark, flat look */
+    text-shadow: none;
 }
 
-/* 2. Apply it to the H1 title */
-h1 {
-    /* Runs the animation quickly (0.3s) and repeats forever */
-    animation: glitch-text 0.3s infinite;
-}
-/* THE CORRUPTION ANIMATION */
-@keyframes corrupted-glitch {
-    0% { 
-        transform: skew(0deg); 
-        box-shadow: 0 0 0 transparent;
-    }
-    20% { 
-        transform: skew(-20deg); /* Bends the button left */
-        box-shadow: 5px 5px 0 red; /* Creates a hard red shadow */
-    }
-    40% { 
-        transform: skew(20deg); /* Bends the button right */
-        box-shadow: -5px -5px 0 blue; /* Creates a hard blue shadow */
-    }
-    60% { 
-        transform: skew(-5deg); 
-        filter: invert(1); /* Flips black to white, white to black */
-    }
-    80% { 
-        transform: skew(5deg); 
-        box-shadow: 3px -3px 0 lime; /* Flash of green */
-    }
-    100% { 
-        transform: skew(0deg); 
-        filter: invert(0);
-    }
-}
-/* Apply the corruption when hovering over ANY button */
-.btn:hover {
-    /* Run the animation very fast (0.3s) and repeat infinitely */
-    animation: corrupted-glitch 0.3s infinite;
+/* ANIMATIONS SECTION */
+
+/* Defining the "Flicker" (The screen breathing effect) */
+@keyframes flicker {
+    /* At start: mostly opaque */
+    0% { opacity: 0.9; }
     
-    /* Change cursor to 'help' or 'not-allowed' to add to the confusion */
-    cursor: help; 
+    /* Randomly dim slightly */
+    5% { opacity: 0.8; }
     
-    /* Make the text bold and pixelated font if available */
-    font-weight: bold;
-    font-family: "Courier New", monospace; 
+    /* Return to normal */
+    10% { opacity: 0.9; }
+    
+    /* SUDDEN DIP: Represents a glitch/power surge */
+    11% { opacity: 0.4; } 
+    
+    /* Return to normal immediately */
+    12% { opacity: 0.9; }
+    
+    /* Stay normal until the end */
+    100% { opacity: 0.9; }
+}
+
+/* Defining the "Shake" (The nervous button effect) */
+@keyframes shake {
+    /* Start at original position */
+    0% { transform: translate(0px, 0px); }
+    
+    /* Move Right 2px, Down 2px */
+    25% { transform: translate(2px, 2px); }
+    
+    /* Move Left 2px, Up 2px */
+    50% { transform: translate(-2px, -2px); }
+    
+    /* Move Left 2px, Down 2px */
+    75% { transform: translate(-2px, 2px); }
+    
+    /* Return to start */
+    100% { transform: translate(0px, 0px); }
 }
